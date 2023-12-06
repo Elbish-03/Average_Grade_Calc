@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Avg-Grade-Calculator</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/login.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <div class="container-header">
+      <div class="nav">
+        <ul>
+          <li><a href="/">HOME</a></li>
+          <form action="/deleteGrades" method="post">
+            <button class="dlt-btn">Delete</button>
+          </form>
+
+          <li id="login-link"><a href="/loginEJS">LOGIN | REGISTER</a></li>
+          <li id="logout-link" style="display: none">
+            <a href="/loginEJS">LOGOUT</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <script>
+      // Check if the "name" variable is defined
+      if (typeof name !== "undefined") {
+        // Hide the "LOGIN | REGISTER" link
+        document.getElementById("login-link").style.display = "none";
+        // Show the "LOGOUT" link and set the href to the login page
+        const logoutLink = document.getElementById("logout-link");
+        logoutLink.style.display = "block";
+        logoutLink.href = "/loginEJS";
+      }
+    </script>
+  </head>
+
+  <body></body>
+</html>

@@ -1,0 +1,71 @@
+<%- include("header") -%>
+
+<div class="mainPage">
+  <form action="/updateEJS" class="calculator" method="post">
+    <input
+      type="text"
+      name="subject"
+      id="subject"
+      placeholder="Subject"
+      required
+    />
+    <br />
+    <br />
+
+    <input type="number" name="grade" id="grade" placeholder="Grade" /> <br />
+    <br />
+
+    <br />
+    <br />
+    <button type="submit" id="submit-btn" class="all-sub">submit</button>
+
+    <table class="gradeTable">
+      <thead>
+        <tr>
+          <th>Subject</th>
+          <th>Grades</th>
+          <th>Average Grade</th>
+        </tr>
+      </thead>
+      <!-- ... (previous HTML content) -->
+      <tbody>
+        <% if (result && result.length > 0) { %> <% for (let i = 0; i <
+        result.length; i++) { %>
+        <tr>
+          <td><%= result[i].subject %></td>
+          <td>
+            <div>
+              <% if (Array.isArray(result[i].grade) && result[i].grade.length >
+              1) { %>
+              <select>
+                <% result[i].grade.forEach((grade) => { %>
+                <option value="<%= grade %>"><%= grade %></option>
+                <% }); %>
+              </select>
+              <% } else { %>
+              <span><%= result[i].grade %></span>
+              <button>
+                <i
+                  class="fas fa-trash"
+                  onclick="deleteGrade('<%= result[i].subject %>')"
+                ></i>
+              </button>
+              <% } %>
+            </div>
+          </td>
+          <td><%= result[i].avgGrade.toFixed(2) %></td>
+        </tr>
+        <% } %> <% } else { %>
+        <tr>
+          <td colspan="3">No data available</td>
+        </tr>
+        <% } %>
+      </tbody>
+      <!-- ... (rest of your EJS content) -->
+    </table>
+
+    <br /><br />
+  </form>
+</div>
+
+<%- include("footer") -%>

@@ -1,0 +1,76 @@
+<%- include("header") -%>
+
+  <body>
+    <div class="form-box">
+      <h1>Login</h1>
+      <form id="loginForm" method="post" action="/login">
+        Login: <input type="text" name="username" id="username" required />
+        <br />
+        Password:
+        <input type="password" name="password" id="password" required /> <br />
+        <button type="submit" id="submit-btn">Submit</button>
+      </form>
+      <div id="login-message">
+        <% if (typeof loginMessage !== 'undefined') { %>
+        <p><%= loginMessage %></p>
+        <% } %>
+      </div>
+      <div class="switch">
+        <a href="#" id="register-link">No account? Register here.</a>
+      </div>
+    </div>
+
+
+
+  <div class="form-box" style="display: none" id="register-form-box">
+    <h1>Register</h1>
+    <form action="/register" method="post">
+      Name: <input type="text" name="name" id="name" required /> Surname:
+      <input type="text" name="surname" id="surname" required /> <br />
+      Email: <input type="email" name="email" id="email" required />
+      <br />
+      Password:
+      <input type="password" name="passwordR" id="password" required /> <br />
+      <button type="submit" id="submit-btn">Submit</button>
+    </form>
+    <div class="switch">
+      <a href="#" id="login-link">Already have an account? Login here.</a>
+    </div>
+    <div id="register-message">
+      <% if (typeof registerMessage !== 'undefined') { %>
+      <p ><%= registerMessage %></p>
+      <% } %>
+    </div>
+  </div>
+
+ <!-- After registering stay at register form
+ If logged in is sucessful pass the name to ejs file and make the name visible in home page
+  Menu link in navbar should appear after being logeed -->
+ 
+
+
+    <script>
+      const loginFormBox = document.querySelector(".form-box");
+      const registerFormBox = document.querySelector("#register-form-box");
+
+      const loginLink = document.querySelector("#login-link");
+      const registerLink = document.querySelector("#register-link");
+
+      registerLink.addEventListener("click", function (e) {
+        e.preventDefault();
+        loginFormBox.style.display = "none";
+        registerFormBox.style.display = "block";
+      });
+
+      loginLink.addEventListener("click", function (e) {
+        e.preventDefault();
+        registerFormBox.style.display = "none";
+        loginFormBox.style.display = "block";
+      });
+    </script>
+  </body>
+</html>
+
+
+
+
